@@ -8,21 +8,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Shodan Copy | No oficial</title>
-    <link rel="stylesheet" href="./src/styles/main.css">
-    <link rel="stylesheet" href="./src/styles/result.css">
+    <link rel="stylesheet" href="./../styles/main.css">
+    <link rel="stylesheet" href="./../styles/result.css">
     <style>
       
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <nav-bar
-            width="s11"
-            icon="./src/icon/iconShodan.png"
+        <span>asdasd</span>
+        <nav-bar 
+            width="s10"
+            icon="../icon/iconShodan.png"
         ></nav-bar>
     </div>
-    <a href="./src/views/result.html">llevame</a>
-    <script type="module" src="./src/services/routes.js"></script>
+    <header-template>
+    </header-template>
+    <a href="../../index.html">volver</a>
+    <div class="row">
+        <div class="col s6">
+            <general-information></general-information>
+            <vulnerabilities-template></vulnerabilities-template>
+        </div>
+        <div class="col s6">
+            <ports-template></ports-template>
+        </div>
+    </div>
+    
+    <script type="module" src="../services/routes.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
