@@ -1,7 +1,20 @@
-class Header extends HTMLElement{ //Delivered
+class NavBar extends HTMLElement{ //Delivered
     constructor(){
         super()
         this.attachShadow({mode : 'open'})
+    }
+
+    static get observedAttributes(){
+        return ['width','icon']
+    }
+
+    attributeChangedCallback(attr,oldVal,newVal){
+        if(attr === 'width'){
+            this.width = newVal
+        }
+        if(attr === 'icon'){
+            this.icon = newVal
+        }
     }
 
     getResourses = () =>{
@@ -15,6 +28,9 @@ class Header extends HTMLElement{ //Delivered
     getStylesNavBar = () => {
         return`
             <style>
+                img.icon{
+                    width: 4em;
+                }
                 .navOptions{
                     display: inline-flex;
                     justify-content: center;
@@ -65,7 +81,10 @@ class Header extends HTMLElement{ //Delivered
         const navBar = document.createElement('template')
         navBar.innerHTML = `
             <div class="row navBarr">
-                <nav id="nav" class="col s6">
+                <span class='col s1'>
+                    <img class='icon' src="${this.icon}" alt="">
+                </span>
+                <nav id="nav" class="col ${this.width}">
                     <div class="navOptions col s2"><a href='#'>Sergio</a></div>
                     <div class="navOptions col s2"><a href='#'>Explore</a></div>
                     <div class="navOptions col s2"><a href='#'>GitHub</a></div>
@@ -85,16 +104,16 @@ class Header extends HTMLElement{ //Delivered
                     </div>
                 </nav>
             </div>
-
+            
             ${this.getResourses()}
             ${this.getStylesNavBar()}
             `
             // Si pasas la mano por el icono de busqueda cambia a una mano, y al darle click hace la busqueda
-        return navBar
-    }
-
-    render(){
-        this.shadowRoot.appendChild(this.getNavBarTemplate().content.cloneNode('true'))
+            return navBar
+        }
+        
+        render(){
+            this.shadowRoot.appendChild(this.getNavBarTemplate().content.cloneNode('true'))
     }
 
     connectedCallback() {
@@ -103,4 +122,4 @@ class Header extends HTMLElement{ //Delivered
 
 }
 
-customElements.define('header-template', Header)
+customElements.define('nav-bar', NavBar)
