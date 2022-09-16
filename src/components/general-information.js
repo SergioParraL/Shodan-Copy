@@ -3,6 +3,30 @@ class GeneralInformation extends HTMLElement {
         super()
         this.attachShadow({mode : 'open'})
     }
+    static get observedAttributes(){
+        return ['hostnames','domains','country_name','city','org','isp']
+    }
+    attributeChangedCallback(att,oldVal,newVal){
+        if(att === 'hostnames'){
+        this.hostnames = newVal
+        }
+        if(att === 'domains'){
+            this.domains = newVal
+        }
+        if(att === 'country_name'){
+            this.country_name = newVal
+        }   
+        if(att === 'city'){
+            this.city = newVal
+        }
+        if(att === 'org'){
+            this.org = newVal
+        }
+        if(att === 'isp'){
+            this.isp = newVal
+        }
+    }
+
     getResourses = () =>{
         return`
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -20,27 +44,27 @@ class GeneralInformation extends HTMLElement {
                 <table>
                     <tr>
                         <th class="resultTitleResearch">Hostnames</th>
-                        <td class="resultResearch">ip93.ip-147-135-27.us</td>
+                        <td class="resultResearch">${this.hostnames}</td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">Domains</th>
-                        <td><a class="waves-effect green btn resultResearch">IP-147-135-27.us</a></td>
+                        <td><a class="waves-effect green btn resultResearch">${this.domains}</a></td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">Country</th>
-                        <td class="resultResearch">United States</td>
+                        <td class="resultResearch">${this.country_name}</td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">City</th>
-                        <td class="resultResearch">McDonough</td>
+                        <td class="resultResearch">${this.city}</td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">Organization</th>
-                        <td class="resultResearch">OVH US LLC</td>
+                        <td class="resultResearch">${this.org}</td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">OVH SAS</th>
-                        <td class="resultResearch">AS16276</td>
+                        <td class="resultResearch">${this.isp}</td>
                     </tr>
                 </table>
             </div>
