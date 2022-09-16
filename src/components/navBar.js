@@ -1,13 +1,14 @@
+
 class NavBar extends HTMLElement{ //Delivered
     constructor(){
         super()
         this.attachShadow({mode : 'open'})
     }
-
+    
     static get observedAttributes(){
         return ['width','icon']
     }
-
+    
     attributeChangedCallback(attr,oldVal,newVal){
         if(attr === 'width'){
             this.width = newVal
@@ -85,18 +86,23 @@ class NavBar extends HTMLElement{ //Delivered
                     <img class='icon' src="${this.icon}" alt="">
                 </span>
                 <nav id="nav" class="col ${this.width}">
-                    <div class="navOptions col s2"><a href='#'>Sergio</a></div>
+                    <div class="navOptions col s2 opt"><a href='#'>Sergio</a></div>
                     <div class="navOptions col s2"><a href='#'>Explore</a></div>
                     <div class="navOptions col s2"><a href='#'>GitHub</a></div>
                     <div class="col s6">
                         <nav>
                             <div class="nav-wrapper">
-                            <form>
+                            <form class='search'>
                                 <div class="input-field">
-                                <input id="search" type="search" required>
-                                <label class="label-icon" for="search"><i class="material-icons"><ion-icon name="search-outline"></ion-icon></i></label>
-                                <i class="material-icons"><ion-icon name="close-outline"></ion-icon></i>
-
+                                    <input id="search" type="search" required>
+                                    <label class="label-icon search" for="search">
+                                        <i class="material-icons">
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </i>
+                                    </label>
+                                    <i class="material-icons">
+                                        <ion-icon name="close-outline"></ion-icon>
+                                    </i>
                                 </div>
                             </form>
                             </div>
@@ -104,11 +110,12 @@ class NavBar extends HTMLElement{ //Delivered
                     </div>
                 </nav>
             </div>
+            <script src="../services/services.js"></script>
+            <button onClick="sendMessage()">👀 Press me!</button>
             
             ${this.getResourses()}
             ${this.getStylesNavBar()}
             `
-            // Si pasas la mano por el icono de busqueda cambia a una mano, y al darle click hace la busqueda
             return navBar
         }
         
