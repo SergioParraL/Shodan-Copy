@@ -4,4 +4,3 @@ import '../components/general-information.js'
 import '../components/vulnerabilities.js'
 import '../components/ports.js'
 import '../services/searchBar.js'
-

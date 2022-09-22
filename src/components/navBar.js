@@ -74,6 +74,9 @@ class NavBar extends HTMLElement{ //Delivered
                 .navOptions:hover{
                     background-color: black;
                 }
+                .search-icon:hover{
+                    cursor:pointer
+                }
             </style>
         `
     } 
@@ -95,12 +98,12 @@ class NavBar extends HTMLElement{ //Delivered
                             <form class='search'>
                                 <div class="input-field">
                                     <input id="search" type="search" required>
-                                    <label class="label-icon search" for="search">
-                                        <i class="material-icons">
+                                    <label class="label-icon" for="search">
+                                        <i class="material-icons search-icon">
                                             <ion-icon name="search-outline"></ion-icon>
                                         </i>
                                     </label>
-                                    <i class="material-icons">
+                                    <i class="material-icons close-outline">
                                         <ion-icon name="close-outline"></ion-icon>
                                     </i>
                                 </div>

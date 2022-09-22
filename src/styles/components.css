@@ -3,7 +3,7 @@
     margin-top: 1rem;
     background-color: #1E1E1E;
 }
-.resultResearch,h5,.portBox,.titleVulnerabilities{
+.resultResearch,h5,.portBox,.titleVulnerabilities, .error{
     color: white;
 }
 

@@ -3,6 +3,17 @@ class Ports extends HTMLElement{
         super()
         this.attachShadow({mode : 'open'})
     }
+
+    static get observedAttributes(){
+        return['ports']
+    }
+
+    attributeChangedCallback(att,oldVal,newVal){
+        if(att === 'ports'){
+            this.ports = newVal
+        }
+    }
+
     getResourses(){
         return`
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -12,28 +23,37 @@ class Ports extends HTMLElement{
         `
     }
     getTemplate(){
+        const portsData = this.ports.split(',')
         const ports = document.createElement("template")
+        
         ports.innerHTML = `
-            <div class="boxContent ports">
-                <h5 class="">Open <strong>Ports</strong></h5>
-                <a class="waves-effect blue btn resultResearch portBox">8</a>
-                <a class="waves-effect blue btn resultResearch portBox">3</a>
-                <a class="waves-effect blue btn resultResearch portBox">4</a>
+        <div class="boxContent ports">
+            <h5 class="">Open <strong>Ports</strong></h5>
+        </div>
+        <div class="col s12">
+            <div class="label">
+                <span class="col s6">//&nbsp;<span><span>80</span>&nbsp;/&nbsp;TCP</span></span>
+                <span class="col s6"><span class="number">-1263655224 </span>&nbsp;&nbsp;|&nbsp;&nbsp;2022-09-03T14:33:17.210663</span> 
             </div>
-            <div class="col s12">
-                <div class="label">
-                    <span class="col s6">//&nbsp;<span><span>80</span>&nbsp;/&nbsp;TCP</span></span>
-                    <span class="col s6"><span class="number">-1263655224 </span>&nbsp;&nbsp;|&nbsp;&nbsp;2022-09-03T14:33:17.210663</span> 
-                </div>
-                <div class="boxContent">
-                    <pre class="vulnerabilitiesText">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut natus laborum porro? Omnis deserunt quas saepe doloribus est? Odio possimus quae harum ducimus sit sint a eum nihil soluta est!
-                    </pre>
+            <div class="boxContent">
+                <div class="vulnerabilitiesText">
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut natus laborum porro? Omnis deserunt quas saepe doloribus est? Odio possimus quae harum ducimus sit sint a eum nihil soluta est!
                 </div>
             </div>
-            ${this.getStyles()}
-            ${this.getResourses()}
+        </div>
+        ${this.getResourses()}
+        ${this.getStyles()}
         `
+        
+        portsData.forEach(element => {
+            const portParent = ports.content.querySelector('.ports')
+            const portTag = document.createElement('a')
+            portTag.classList.add('waves-effect', 'blue', 'btn', 'resultResearch',  'portBox')
+            portTag.text = element
+            portParent.appendChild(portTag)
+        });
+
+
         return ports
     }
     getStyles(){
@@ -43,8 +63,10 @@ class Ports extends HTMLElement{
                     color: white;
                 }
                 .portBox{
-                    width: 3rem;
+                    width: 4rem;
                     height: 3rem;
+                    padding: 5px;
+                    margin: .4rem 0.4rem;
                 }
                 .ports{
                     border-top: 3px solid #41A4DB;
