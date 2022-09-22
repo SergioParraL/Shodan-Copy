@@ -4,11 +4,11 @@ class GeneralInformation extends HTMLElement {
         this.attachShadow({mode : 'open'})
     }
     static get observedAttributes(){
-        return ['hostnames','domains','country_name','city','org','isp']
+        return ['hostnames','domains','country_name','city','org','isp','asn']
     }
     attributeChangedCallback(att,oldVal,newVal){
         if(att === 'hostnames'){
-        this.hostnames = newVal
+            this.hostnames = newVal
         }
         if(att === 'domains'){
             this.domains = newVal
@@ -25,6 +25,9 @@ class GeneralInformation extends HTMLElement {
         if(att === 'isp'){
             this.isp = newVal
         }
+        if( att == 'asn'){
+            this.asn = newVal
+        }
     }
 
     getResourses = () =>{
@@ -36,19 +39,19 @@ class GeneralInformation extends HTMLElement {
         `
     }
     getTemplate(){
+        const hNames = this.hostnames.split(',')
+        const Domains = this.domains.split(',')
         const contentNode = document.createElement('template')
         contentNode.innerHTML = `
             <div class="boxContent generalInformation">
                 <h5><ion-icon name="globe"></ion-icon>
                     <strong>General</strong> Information</h5>
                 <table>
-                    <tr>
+                    <tr class='hostnames'>
                         <th class="resultTitleResearch">Hostnames</th>
-                        <td class="resultResearch">${this.hostnames}</td>
                     </tr>
-                    <tr>
+                    <tr class='domains'>
                         <th class="resultTitleResearch">Domains</th>
-                        <td><a class="waves-effect green btn resultResearch">${this.domains}</a></td>
                     </tr>
                     <tr>
                         <th class="resultTitleResearch">Country</th>
@@ -66,11 +69,53 @@ class GeneralInformation extends HTMLElement {
                         <th class="resultTitleResearch">OVH SAS</th>
                         <td class="resultResearch">${this.isp}</td>
                     </tr>
+                    <tr class='asn'>
+                        <th class='resultTitleResearch'>ASN</th>
+                        <td class="resultResearch">${this.asn}</td>
+                    </tr>
                 </table>
             </div>
             ${this.getStylesTemplate()}
             ${this.getResourses()}
-            `
+        `
+
+        const divDomains  = contentNode.content.querySelector('.domains')
+        const divHostnames = contentNode.content.querySelector('.hostnames')
+        const divHola = contentNode.content.querySelector('.hola')
+
+        if(this.domains != ''){
+                hNames.forEach(element =>{
+                const hostnamesTag = document.createElement('td')
+                
+                hostnamesTag.textContent = element
+                hostnamesTag.classList.add('resultResearch')
+    
+                divHostnames.appendChild(hostnamesTag)
+    
+            })
+        }else{
+            divHostnames.parentNode.removeChild(divHostnames)
+        }
+        
+        if(this.domains != ''){
+            Domains.forEach(element => {
+                const domainsTag = document.createElement('td')
+    
+                domainsTag.classList.add('resultResearch')
+                domainsTag.innerHTML = `<a class="waves-effect green btn resultResearch">${element}</a>`
+    
+                divDomains.appendChild(domainsTag)
+                
+            });
+        }else{
+            divDomains.parentNode.removeChild(divDomains)
+        }
+
+        if (this.asn != '') {
+            
+        }
+
+
         return contentNode
     }
     getStylesTemplate(){
