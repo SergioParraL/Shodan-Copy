@@ -1,5 +1,6 @@
 // 147.135.27.93
 // 64.190.63.111
+// 31.131.185.152
 
 export const resetComponentsDOM = () =>{
     const portsTemplate = document.querySelector('ports-template')
@@ -36,6 +37,7 @@ export const processingData = (jsonData) =>{
         let main = {generalInformation}
         let ports = []
         let vulns = []
+        let portDetail = jsonData.data
         let ip = jsonData.ip_str
 
         console.log(jsonData)
@@ -58,12 +60,14 @@ export const processingData = (jsonData) =>{
         })
 
         main.ip = ip
+        main.ubication = {latitude : jsonData.latitude,longitude : jsonData.longitude}
         if(vulns.length > 0){
             main.vulns = vulns
         }if(ports.length > 0){
             main.ports = ports
         }
         
+        console.log(portDetail)
         return webComponentsConstructor(main)
     }
 
@@ -92,6 +96,8 @@ const webComponentsConstructor = (data) =>{
     componentPorts.setAttribute('ports', data.ports)
     
     componentHeader.setAttribute('ip_str', data.ip)
+    componentHeader.setAttribute('latitude', data.ubication.latitude)
+    componentHeader.setAttribute('longitude', data.ubication.longitude)
 
     parent1.appendChild(componentGenInfo) 
     parent1.appendChild(componentVulns)

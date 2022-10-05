@@ -25,6 +25,7 @@ class Ports extends HTMLElement{
     getTemplate(){
         const portsData = this.ports.split(',')
         const ports = document.createElement("template")
+        let arrNumber = []
         
         ports.innerHTML = `
         <div class="boxContent ports">
@@ -45,7 +46,16 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut natus laborum porro
         ${this.getStyles()}
         `
         
-        portsData.forEach(element => {
+        portsData.forEach(string =>{
+            let parseNumber = parseInt(string, 10)
+            arrNumber.push(parseNumber)
+        })
+
+        arrNumber.sort((a,b)=>{
+            return a - b
+        })
+        console.log(arrNumber)
+        arrNumber.forEach(element => {
             const portParent = ports.content.querySelector('.ports')
             const portTag = document.createElement('a')
             portTag.classList.add('waves-effect', 'blue', 'btn', 'resultResearch',  'portBox')
@@ -53,7 +63,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut natus laborum porro
             portParent.appendChild(portTag)
         });
 
-
+        
         return ports
     }
     getStyles(){

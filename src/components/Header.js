@@ -5,12 +5,18 @@ class Header extends HTMLElement{
     }
 
     static get observedAttributes(){
-        return ['ip_str']
+        return ['ip_str','longitude','latitude']
     }
 
     attributeChangedCallback(att,oldVal,newVal){
         if (att === 'ip_str'){
             this.ip_str = newVal
+        }
+        if(att == 'latitude'){
+            this.latitude = newVal
+        }
+        if (att == 'longitude') {
+            this.longitude = newVal
         }
     }
 
@@ -47,6 +53,9 @@ class Header extends HTMLElement{
                     justify-content: center;
                     align-items: center;
                 }
+                iframe{
+                    border: none;
+                }
             </style>
         `
     }
@@ -54,7 +63,7 @@ class Header extends HTMLElement{
         const header = document.createElement('template')
         header.innerHTML = `
             <section class="header">
-                <iframe class="mapLocation" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4095.9335247722556!2d-115.17499456784228!3d36.117135174372244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c43c44cae095%3A0x77c9c8f2a2af3ff7!2sCaesars%20Palace!5e1!3m2!1ses!2sus!4v1661286936775!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe width="100%" height="250" src="https://api.maptiler.com/maps/hybrid/?key=Yzumo1aUQzbA1gTZxvgC#9.9/${this.latitude}/${this.longitude}"></iframe>
                 <article class=" ip">
                     <div>
                         <h4>${this.ip_str}</h4>
