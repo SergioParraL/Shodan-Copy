@@ -108,7 +108,7 @@ class NavBar extends HTMLElement{ //Delivered
                         </li>
                         <li class="navOptions hover"><a href='index.html'>ShodanCopy</a></li>
                         <li class="navOptions hover"><a href="https://github.com/SergioParraL">GitHub</a></li>
-                        <li class="navOptions hover"><a href="https://sergioparral.github.io/PortFolio/">PortFolio</a></li>
+                        <li class="navOptions hover"><a href="https://sergioparral.github.io/PortFolio/">See more</a></li>
                         <li class="FormSearhBar ">
                             <form class='search'>
                                 <div class="input-field">
