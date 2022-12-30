@@ -2,6 +2,7 @@ class NavBar extends HTMLElement{ //Delivered
     constructor(){
         super()
         this.attachShadow({mode : 'open'})
+        this.Icon = this.getAttribute('icon')
     }
     getResourses = () =>{
         return`
@@ -103,7 +104,7 @@ class NavBar extends HTMLElement{ //Delivered
                     <ul id="nav-mobile" class="left col s12">
                         <li class="navOptions hover">
                             <a href="index.html">
-                                <img class='icon' src="./src/icon/SL-logo-white.svg" alt="">
+                                <img class='icon' src="${this.Icon}" alt="">
                             </a>
                         </li>
                         <li class="navOptions hover"><a href='index.html'>ShodanCopy</a></li>
