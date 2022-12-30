@@ -1,23 +1,8 @@
-
 class NavBar extends HTMLElement{ //Delivered
     constructor(){
         super()
         this.attachShadow({mode : 'open'})
     }
-    
-    static get observedAttributes(){
-        return ['width','icon']
-    }
-    
-    attributeChangedCallback(attr,oldVal,newVal){
-        if(attr === 'width'){
-            this.width = newVal
-        }
-        if(attr === 'icon'){
-            this.icon = newVal
-        }
-    }
-
     getResourses = () =>{
         return`
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -29,11 +14,29 @@ class NavBar extends HTMLElement{ //Delivered
     getStylesNavBar = () => {
         return`
             <style>
+                nav{
+                    background-color: transparent;
+                    box-shadow: none;
+                }
+                .row .col{
+                    padding: 0;
+                }
                 img.icon{
-                    width: 4em;
+                    width: 3em;
+                    margin: .5rem;
                 }
                 .navOptions{
-                    display: inline-flex;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 4.2em;
+                    color: white;
+                    border-right: 1px solid #fffffd24;
+                    width: 8em;
+                }
+                .navOptions a{
+                    color: white;
+                    display:flex;
                     justify-content: center;
                     align-items: center;
                 }
@@ -59,24 +62,32 @@ class NavBar extends HTMLElement{ //Delivered
                     position: relative;
                     bottom: 3px;
                 }
+                li{
+                    margin: 0;
+                    background-color: #2F2F2F;
+                }
+                li:last-child{
+                    background-color: #5f9838;
+                }
                 .navBarr{
                     margin-left: .7rem;
                     position: relative;
                     bottom: 105%;
                     z-index: 10;
-                }
-                nav{
                     background-color: #212121;
+                   
                 }
-                .nav-wrapper{
-                    background-color: #2F2F2F;
+                .FormSearhBar{
+                    width: 30%;
+                    height: 4.2rem;
                 }
-                .navOptions:hover{
+                .navOptions.hover:hover{
                     background-color: black;
                 }
                 .search-icon:hover{
                     cursor:pointer
                 }
+                
             </style>
         `
     } 
@@ -84,20 +95,24 @@ class NavBar extends HTMLElement{ //Delivered
     getNavBarTemplate(){
         const navBar = document.createElement('template')
         navBar.innerHTML = `
-            <div class="row navBarr">
-                <span class='col s1'>
-                    <img class='icon' src="${this.icon}" alt="">
-                </span>
-                <nav id="nav" class="col ${this.width}">
-                    <div class="navOptions col s2 opt"><a href='#'>Sergio</a></div>
-                    <div class="navOptions col s2"><a href='#'>Explore</a></div>
-                    <div class="navOptions col s2"><a href='#'>GitHub</a></div>
-                    <div class="col s6">
-                        <nav>
-                            <div class="nav-wrapper">
+            ${this.getResourses()}
+            ${this.getStylesNavBar()}
+
+            <nav>
+                <div class="nav-wrapper row">
+                    <ul id="nav-mobile" class="left col s12">
+                        <li class="navOptions hover">
+                            <a href="index.html">
+                                <img class='icon' src="./src/icon/SL-logo-white.svg" alt="">
+                            </a>
+                        </li>
+                        <li class="navOptions hover"><a href='index.html'>ShodanCopy</a></li>
+                        <li class="navOptions hover"><a href="https://github.com/SergioParraL">GitHub</a></li>
+                        <li class="navOptions hover"><a href="https://sergioparral.github.io/PortFolio/">PortFolio</a></li>
+                        <li class="FormSearhBar ">
                             <form class='search'>
                                 <div class="input-field">
-                                    <input id="search" type="search" required>
+                                    <input id="search" type="search" required placeholder="Search...">
                                     <label class="label-icon" for="search">
                                         <i class="material-icons search-icon">
                                             <ion-icon name="search-outline"></ion-icon>
@@ -108,22 +123,20 @@ class NavBar extends HTMLElement{ //Delivered
                                     </i>
                                 </div>
                             </form>
-                            </div>
-                        </nav>
-                    </div>
-                </nav>
-            </div>
-            <script src="../services/services.js"></script>
-            <button onClick="sendMessage()">👀 Press me!</button>
+                        </li>
+                        <li class="right"><a href="#">LinkedIn</a></li>
+                      </ul>
+                    
+                </div>
+            </nav>
             
-            ${this.getResourses()}
-            ${this.getStylesNavBar()}
+            <script src="../services/services.js"></script>
             `
             return navBar
         }
         
-        render(){
-            this.shadowRoot.appendChild(this.getNavBarTemplate().content.cloneNode('true'))
+    render(){
+        this.shadowRoot.appendChild(this.getNavBarTemplate().content.cloneNode('true'))
     }
 
     connectedCallback() {
