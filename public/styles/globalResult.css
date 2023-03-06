@@ -1,0 +1,83 @@
+body{
+    color: #a5a5a5;
+}
+.grid-container{
+    width: 100%;
+    padding: 1.5rem 3rem;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 18% auto;
+    gap: 5%;
+    background-color: #1e1e1e;
+}
+/* __________________________________________________ */
+
+/* Resume Result */
+
+.resumeResult h6{
+    color: #888;
+    font-size: 1.2rem;
+    border-bottom: 1px dashed #888;
+}
+
+.resumeResult span{
+    font-weight: 700;
+}
+.slotResult a{
+    color: white;
+}
+.slotResult span.num-Data{
+    color: #a5a5a5;
+}
+
+li.slotResult{
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+li.slotResult{
+    color: 039be5;
+}
+li.slotResult a:hover, .address span:hover{
+    color: #039be5;
+}
+/* __________________________________________________ */
+
+/* query data */
+
+.response-Data .data {
+    /* border: 1px solid white; */
+}
+
+.address a{
+    color: #eee;
+}
+
+.response-Data .data article:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+ 
+.data .ip a{
+    color: #eee;
+    font-size: 1.7rem;
+}
+.data .timeStamp{
+    color: #9e9e9e;
+}
+
+.data article:nth-child(2){
+    display: grid;
+    grid-template-columns: 20% auto;
+    gap: 3rem;
+    grid-auto-rows: minmax(7rem, 13rem);
+    overflow: hidden;
+}
+.dotData{
+    display: flex;
+    justify-content: center;
+}
+.data article .ip a:hover{
+    color: #bdbdbd;
+}

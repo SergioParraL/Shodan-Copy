@@ -1,0 +1,77 @@
+nav{
+    background-color: transparent;
+    box-shadow: none;
+}
+.row .col{
+    padding: 0;
+}
+img.icon{
+    width: 3em;
+    margin: .5rem;
+}
+.navOptions{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 4.2em;
+    color: white;
+    border-right: 1px solid #fffffd24;
+    width: 8em;
+}
+.navOptions a{
+    color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonBarrSearch{
+    list-style: none;
+    width: 5.2rem;
+    position: relative;
+    right: 20px;
+}
+.btnSearchBarr{
+    background-color: transparent;
+    height: 4rem;
+    border: none;
+}
+.buttonBarrSearch a i{
+    line-height: 60px;
+}
+.buttonBarrSearch a{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 4.4rem;
+    position: relative;
+    bottom: 3px;
+}
+li.navOptions{
+    margin: 0;
+    background-color: #2F2F2F;
+}
+ul#nav-mobile li:last-child{
+    background-color: #5f9838;
+}
+.navBarr{
+    margin-left: .7rem;
+    position: relative;
+    bottom: 105%;
+    z-index: 10;
+    background-color: #212121;
+   
+}
+.FormSearhBar{
+    width: 30%;
+    height: 4.2rem;
+}
+.navOptions.hover:hover{
+    background-color: black;
+}
+.search-icon:hover{
+    cursor:pointer
+}
+.search{
+    background-color: #2F2F2F;
+
+}
