@@ -12,7 +12,7 @@ const deleteFileData = (path) => {
 const writeFileData = (path, data) =>{
     fs.writeFile(path, data, (err) => {
         if(err) throw('hubo un error');
-        console.log('archivo creado')
+        console.log('archivo escrito')
     })
 }
 

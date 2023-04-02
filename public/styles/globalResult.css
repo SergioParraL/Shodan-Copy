@@ -2,7 +2,7 @@ body{
     color: #a5a5a5;
 }
 .grid-container{
-    width: 100%;
+    /* width: 100%; */
     padding: 1.5rem 3rem;
     margin-top: 2rem;
     display: grid;
@@ -46,12 +46,12 @@ li.slotResult a:hover, .address span:hover{
 
 /* query data */
 
-.response-Data .data {
-    /* border: 1px solid white; */
-}
-
 .address a{
     color: #eee;
+}
+
+.response-Data .data{
+    /* max-width: 11%; */
 }
 
 .response-Data .data article:nth-child(1){
@@ -69,9 +69,9 @@ li.slotResult a:hover, .address span:hover{
 
 .data article:nth-child(2){
     display: grid;
-    grid-template-columns: 20% auto;
+    grid-template-columns: 16em 30em;
     gap: 3rem;
-    grid-auto-rows: minmax(7rem, 13rem);
+    grid-auto-rows: minmax(7rem, 16rem);
     overflow: hidden;
 }
 .dotData{
