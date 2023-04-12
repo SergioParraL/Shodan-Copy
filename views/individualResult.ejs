@@ -14,18 +14,14 @@
 </head>
 <body>
     <div class="headerMain">
-        <div class="wrapper">
-            <!-- <nav-bar icon="./../assets/icon/iconShodan.png"></nav-bar> -->
             <%- include('./navBar') %>
-        </div>
-
         <!-- map -->
         <section class="header">
-            <iframe width="100%" height="250" src="https://api.maptiler.com/maps/hybrid/?key=Yzumo1aUQzbA1gTZxvgC#9.9/${this.latitude}/${this.longitude}"></iframe>
-                <article class=" ip">
+            <iframe width="100%" height="250" class="mapFrame"></iframe>
+                <article class="ip">
                     <div>
                         <!-- Result response IP -->
-                        <h4>Result response IP</h4> 
+                        <h4 class="ipResult">Result response IP</h4> 
                     </div>
                 </article>
             </section>
@@ -126,7 +122,7 @@
 
         </div>
     </div>
-    <script src="../javascript/index.js" ></script>
+    <script src="../javascript/individualResult.js" ></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
