@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="../styles/navBar.css">
 
 </head>
@@ -16,21 +17,35 @@
                         <img class='icon' src="./../assets/icon/SL-logo-white.svg" alt="">
                     </a>
                 </li>
-                <li class="navOptions hover"><a href='index.html'>ShodanCopy</a></li>
+                <li class="navOptions hover"><a href='http://localhost:3001'>ShodanCopy</a></li>
                 <li class="navOptions hover"><a href="https://github.com/SergioParraL">GitHub</a></li>
                 <li class="navOptions hover"><a href="https://sergioparral.github.io/PortFolio/">See more</a></li>
                 <li class="FormSearhBar ">
                     <form id="searchForm" action="http://localhost:3001/" method="POST" name="pref" class='search'>
-                        <div class="input-field">
-                            <input id="search" type="search" name="search" required placeholder="Search...">
-                            <label id='searchIcon' class="label-icon" for="search">
-                                <i  class="material-icons search-icon">
-                                    <ion-icon name="search-outline"></ion-icon>
+                        <div class="row">
+                            <div class="input-field col s9">
+                                <input class="input-Search" id="search" type="search" name="search" required placeholder="Search...">
+                                <label id='searchIcon' class="label-icon" for="search">
+                                    <i  class="material-icons search-icon">
+                                        <ion-icon name="search-outline"></ion-icon>
+                                    </i>
+                                </label>
+                                <i class="material-icons close-outline">
+                                    <ion-icon name="close-outline"></ion-icon>
                                 </i>
-                            </label>
-                            <i class="material-icons close-outline">
-                                <ion-icon name="close-outline"></ion-icon>
-                            </i>
+                            </div>
+                            <div class="col s2">
+                                <p>
+                                    <label>
+                                    <input name="group1" type="radio" checked  value="search"/>
+                                    <span>word</span>
+                                    </label>
+                                    <label>
+                                    <input name="group1" type="radio" value="ip" />
+                                    <span>IP</span>
+                                    </label>
+                                </p>
+                            </div>
                         </div>
                     </form>
                 </li>

@@ -191,36 +191,30 @@ const sortFunction = obj => {       // show the top 5 of the 'obj' passed
     return top5
 }
 
+const handlerTagA = () => {
+    const links = document.querySelectorAll('a')
+    links.forEach(e => {
+        e.addEventListener('click', (event) => {
+            let form = document.querySelector('#searchForm')
+            let input = form.children[0].children[0]
+            input.value = event.target.innerText
+            form.submit()
+        })
+    })
+}
 
 document.addEventListener('DOMContentLoaded', ()=>{
     fetch('http://localhost:3001/javascript/response.txt')
         .then(response =>   response.json())
         .then(data => {
             buildObj(data)
+            console.log(data)
             const resumeDataObj = buildResumeDataObj($showObjData)
             const shortedData = sortFunction(resumeDataObj)
             cardMainData(data)
             cardResumeData(shortedData)
-            searchByIp()
+            handlerTagA()
         })
 	.catch(error => console.error(error))
 });
 
-const searchByIp = () => {
-    const links = document.querySelectorAll('.ip_str')
-    links.forEach(e => {
-        e.addEventListener('click', (event) => {
-            e.setAttribute('id','ipTest')
-            event.preventDefault()
-            const q = new FormData();
-            q.append('ip',event.target.textContent) 
-
-            fetch('/newSearchByLink',{
-                method : 'POST',
-                body : q
-            })
-            .then(response => console.log(response))
-            .catch(err => console.error(err))
-        })
-    })
-}

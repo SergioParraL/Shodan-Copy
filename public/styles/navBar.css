@@ -62,7 +62,7 @@ ul#nav-mobile li:last-child{
    
 }
 .FormSearhBar{
-    width: 30%;
+    width: 35%;
     height: 4.2rem;
 }
 .navOptions.hover:hover{
@@ -74,4 +74,9 @@ ul#nav-mobile li:last-child{
 .search{
     background-color: #2F2F2F;
 
+}
+
+input.input-Search{
+    display: initial !important;
+    height: auto !important;
 }

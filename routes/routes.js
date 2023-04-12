@@ -8,31 +8,41 @@ const writeFile = require('../src/writeFileData.js')
 const query = require('../src/axios.js');
 const { response, urlencoded } = require('express');
 
-const base = `https://api.shodan.io/`
-const route = `shodan/host/search`;
-const key = 'mdIBTyor5MZmZ4FKKWRO5jrA2f9tJ6bl';
-const queryOptions = ['query','Domain','Country']; 
-
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 router.post('/', (req,res) => {
-    const dataForm = req.body.search;
-    console.log(req.body.search)
+    const { search, group1 } = req.body;
+    // console.log(search)
+    // console.log(group1)
     const path = './public/javascript/response.txt';
-    query(`${base}${route}?key=${key}&${queryOptions[0]}=${dataForm}`)
+
+    query(search,group1)
         .then(response =>{
 			const jsonResponse = JSON.stringify(response.data)
 			writeFile.deleteFileData(path)
 			writeFile.writeFileData(path,jsonResponse)
-            res.redirect('globalResult')
+            if(group1 == 'search'){
+                if(response.data.total == 0){
+                    res.redirect('errorView?error=WeHaveAError')  // it's necessary setup the error view and take the data from the url
+                }else{
+                    res.redirect('globalResult')
+                }
+            }else{
+                res.redirect('individualResult')
+            }
         })
         .catch(error => {
-                console.error(error)
+            // data: { error: 'Invalid IP' }
+            const exception = error.response.data
+            if(exception.hasOwnProperty('error')){
+                res.redirect(`errorView?error=${exception.error}`) // it's necessary setup the error view and take the data from the url
+            }
         })
-})
+    })
 
 router.post('/newSearchByLink', (req,res) => {
     console.log(req.body)
@@ -45,6 +55,10 @@ router.get('/individualResult', (req,res) => {
 
 router.get('/globalResult', (req,res) => {
     res.render('globalResult')
+})
+
+router.get('/errorView', (req,res) => {
+    res.render('errorView')
 })
 
 module.exports = router;
