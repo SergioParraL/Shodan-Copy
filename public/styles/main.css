@@ -1,0 +1,93 @@
+body{
+    background-color: rgb(18,18,18);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+.centerXitems{
+    display: flex;
+    justify-content: space-around;
+}
+.centerXYitems{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+p{
+    line-height: 1.5em;
+}
+.wrapper{
+    width: 98%;
+}
+.transitionAnimation{
+    transition: all;
+    transition-duration: 300ms;
+}
+
+/* After of Navigation Component -- Presentation Page */
+.headSection{
+    background: url(../assets/Images/background.jpg) ;
+    background-position: 50%;
+    height: 60vh;
+    margin: 15px auto;
+}
+
+.titleHead{
+    background-color: black;
+    font-size: .7em;
+}
+
+.primary{
+    max-height: 30em ;
+}
+.primary p{
+    font-size: 1.5em;
+}
+
+.redText{
+    color: red;
+}
+
+.GitHubRepo{
+    background-color: #5f9838 ;
+    width: 20%;
+    height: 3em;
+    font-size: 1.2em;
+}    
+.GitHubRepo{
+    color: #1d1d1d;
+    font-weight: bolder;
+}
+
+.GitHubRepo:hover{
+    background-color: black;
+    color:white;
+    border-radius: .5em;
+}
+
+/* Section: Search By differents methods */
+
+.description{
+    background-color: #292929;
+    padding: 10px 20px;
+    width: 30%;
+    align-items:center;
+    margin-top: 2%;
+}
+.description p{
+    line-height: 1.7em;
+    font-size: 1.2em;
+}
+.description:nth-child(1){
+    border-top: 1px solid yellow;
+}
+.description:nth-child(2){
+    border-top: 1px solid red;
+}
+.description:nth-child(3){
+    border-top: 1px solid skyblue;
+}
+.description:hover{
+    transform: scale(1.1);
+}
