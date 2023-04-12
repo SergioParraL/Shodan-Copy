@@ -208,7 +208,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         .then(response =>   response.json())
         .then(data => {
             buildObj(data)
-            console.log(data)
             const resumeDataObj = buildResumeDataObj($showObjData)
             const shortedData = sortFunction(resumeDataObj)
             cardMainData(data)
