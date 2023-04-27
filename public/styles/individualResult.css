@@ -1,8 +1,27 @@
+/* General layoud */
+
+.wrapper{
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.boxContent{
+    padding: 1rem 1.5rem;
+    background-color : #1E1E1E;
+    margin-bottom: 2rem;
+}
+
+.searchByString{
+    cursor: pointer;
+}
+
 /* Map */
 
 .header{
     padding-top: 1rem;
     height: 15rem;
+    margin-bottom: 4rem;
 }
 .mapLocation{
     width: 100%;
@@ -11,17 +30,20 @@
     z-index: 1;
 }
 .ip{
-    width: 13%;
+    width: 18%;
     position: relative;
-    bottom: 69%;
+    bottom: 32%;
     background-color: white;
     height: 4rem;
     z-index: 10;
-}
-.ip{
     display: inline-flex;
     justify-content: center;
     align-items: center;
+}
+.ip h4.ipResult{
+    position: relative;
+    /* z-index: 15; */
+    color: black;
 }
 iframe{
     border: none;
@@ -37,29 +59,47 @@ iframe{
 .resultTitleResearch{
     color: #5B5B5B;
 }
-
+table tr{
+    border-bottom: .2px solid rgb(201 206 206);
+}
 
 /* ________________________________ */
 
 /* Vulnerabilities */
+
+.vulnsPartRepeat{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    border-bottom: .2px solid rgb(201 206 206);
+    padding-bottom: 1rem;
+}
+
+.titleVulnerabilities{
+    width: 25%;
+}
 
 h5,.vulnerabilitiesText{
     font-weight: 200;
 }
 .vulnerabilitiesText{
     color: #5B5B5B;
+    width: 75%;
 }
+
 .vulnerabilities{
     border-top: 3px solid red;
 }
-.background{
-    background-color : #1E1E1E;
-    margin-bottom: 0;
-}
+
 
 /* ___________________________________*/
 
 /* Ports */
+
+.dataDetail{
+    color: #5B5B5B;
+
+}
 
 .resultResearch,h5{
     color: white;
@@ -75,21 +115,20 @@ h5,.vulnerabilitiesText{
 }
 .label{
     color: white;
-    margin-block-start: 1rem;
+}
+
+.label span{
+    /* background: blue; */
+    width: 100%;
 }
 .label span:nth-child(2){
     text-align: right;
     font-size: 12px;
     float: right;
 }
-.label span:nth-child(1) span{
-    background-color: #212121;
-}
 .label span:nth-child(1) span span{
     font-weight: 600;
-
 }
-.label span span.number{
+span.number{
     color: #2096F3;
-    
 }

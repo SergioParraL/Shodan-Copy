@@ -2,9 +2,9 @@ nav{
     background-color: transparent;
     box-shadow: none;
 }
-.row .col{
+/* .row .col{
     padding: 0;
-}
+} */
 img.icon{
     width: 3em;
     margin: .5rem;
