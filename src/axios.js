@@ -17,6 +17,7 @@ function containsNumbers(str) {           // this function test if the query hav
   
 
 function query(query,param){
+    console.log(query,param)
   let url
   if(param == 'ip'){              // urlip
     url = `${base}${query}?key=${key}`

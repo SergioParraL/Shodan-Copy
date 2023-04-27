@@ -16,23 +16,21 @@ app.use(bodyParser.json());
 
 router.post('/', (req,res) => {
     const { search, group1 } = req.body;
-    // console.log(search)
-    // console.log(group1)
     const path = './public/javascript/response.txt';
-
+    
     query(search,group1)
         .then(response =>{
 			const jsonResponse = JSON.stringify(response.data)
 			writeFile.deleteFileData(path)
 			writeFile.writeFileData(path,jsonResponse)
-            if(group1 == 'search'){
-                if(response.data.total == 0){
-                    res.redirect('errorView?error=WeHaveAError')  // it's necessary setup the error view and take the data from the url
-                }else{
-                    res.redirect('globalResult')
-                }
+            if(response.data.total == 0){
+                res.redirect(`errorView?error=No%20Data%20Fount`)
             }else{
-                res.redirect('individualResult')
+                if(group1 == 'search'){
+                    res.redirect('globalResult')
+                }else{
+                    res.redirect('individualResult')
+                }
             }
         })
         .catch(error => {
@@ -44,10 +42,6 @@ router.post('/', (req,res) => {
         })
     })
 
-router.post('/newSearchByLink', (req,res) => {
-    console.log(req.body)
-    res.send('index')
-})
 
 router.get('/individualResult', (req,res) => {
     res.render('individualResult')
@@ -62,26 +56,3 @@ router.get('/errorView', (req,res) => {
 })
 
 module.exports = router;
-
-
-
-
-
-
-
-
-// const repetitions = {};
-
-// for (const key in sendDataFrontend.totalData) {
-//   if (Array.isArray(sendDataFrontend.totalData[key])) {
-// 	sendDataFrontend.totalData[key].forEach((value) => {
-// 	  if (typeof value === "string") {
-// 		sendDataFrontend.production[value] = sendDataFrontend.production[value] ? sendDataFrontend.production[value] + 1 : 1;
-// 	  }
-// 	});
-//   } else {
-// 	console.error(`Value for key "${key}" is not an array`);
-//   }
-// }
-
-// console.log(sendDataFrontend.production)

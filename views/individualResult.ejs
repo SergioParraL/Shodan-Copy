@@ -7,126 +7,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Shodan Copy | No oficial</title>
+    <title>Shodan Copy | individual Result</title>
     <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/result.css">
+    <link rel="stylesheet" href="../styles/individualResult.css">
     <!-- <link rel="stylesheet" href="./../styles/result.css"> -->
 </head>
 <body>
     <div class="headerMain">
-        <div class="wrapper">
-            <!-- <nav-bar icon="./../assets/icon/iconShodan.png"></nav-bar> -->
             <%- include('./navBar') %>
-        </div>
-
         <!-- map -->
         <section class="header">
-            <iframe width="100%" height="250" src="https://api.maptiler.com/maps/hybrid/?key=Yzumo1aUQzbA1gTZxvgC#9.9/${this.latitude}/${this.longitude}"></iframe>
-                <article class=" ip">
-                    <div>
+            <iframe width="100%" height="250" class="mapFrame"></iframe>
+                <article class="ip">
                         <!-- Result response IP -->
-                        <h4>Result response IP</h4> 
-                    </div>
+                        <h4 class="ipResult"></h4> 
                 </article>
             </section>
     </div>
-    <div class="row">
+    <div class="row wrapper">
         <div class="col s6 rowN1">
             <!-- general-Information -->
-            <div class="boxContent generalInformation">
-                <h5><ion-icon name="globe"></ion-icon>
-                    <strong>General</strong> Information</h5>
-                <table>
-                    <tr class='hostnames'>
-                        <th class="resultTitleResearch">Hostnames</th>
-                        <td class="resultResearch">ip-147-135-27.us</td>
-                        <td class="resultResearch">ip-147-135-27.us</td>
-                        <td class="resultResearch">ip-147-135-27.us</td>
-                        <td class="resultResearch">ip-147-135-27.us</td>
-                    </tr>
-                    <tr class='domains'>
-                        <th class="resultTitleResearch">Domains</th>
-                        <td class="resultResearch"><a class="waves-effect green btn resultResearch">ip-147-135-27.us</a></td>
-                        <td class="resultResearch"><a class="waves-effect green btn resultResearch">ip-147-135-27.us</a></td>
-                        <td class="resultResearch"><a class="waves-effect green btn resultResearch">ip-147-135-27.us</a></td>
-                        <td class="resultResearch"><a class="waves-effect green btn resultResearch">ip-147-135-27.us</a></td>
-                    </tr>
-                    <tr>
-                        <th class="resultTitleResearch">Country</th>
-                        <td class="resultResearch">Venezuela</td>
-                    </tr>
-                    <tr>
-                        <th class="resultTitleResearch">City</th>
-                        <td class="resultResearch">Caracas</td>
-                    </tr>
-                    <tr>
-                        <th class="resultTitleResearch">Organization</th>
-                        <td class="resultResearch">CANTV</td>
-                    </tr>
-                    <tr>
-                        <th class="resultTitleResearch">OVH SAS</th>
-                        <td class="resultResearch">8128312</td>
-                    </tr>
-                    <tr class='asn'>
-                        <th class='resultTitleResearch'>ASN</th>
-                        <td class="resultResearch">123145</td>
-                    </tr>
-                </table>
+            <div>
+                <div class="boxContent generalInformation ">
+                    <h5><ion-icon name="globe"></ion-icon>
+                        <strong>General</strong> Information</h5>
+                    <table>
+                        <tr class='hostnames'>
+                            <th class="resultTitleResearch">Hostnames</th>
+                        </tr>
+                        <tr class='domains'>
+                            <th class="resultTitleResearch">Domains</th>
+                        </tr>
+                        <tr class="country">
+                            <th class="resultTitleResearch">Country</th>
+                        </tr>
+                        <tr class="city">
+                            <th class="resultTitleResearch">City</th>
+                        </tr>
+                        <tr class="org">
+                            <th class="resultTitleResearch">Organization</th>
+                        </tr>
+                        <tr class='isp'>
+                            <th class='resultTitleResearch'>ISP</th>
+                        </tr>
+                        <tr class='asn'>
+                            <th class='resultTitleResearch'>ASN</th>
+                        </tr>
+                    </table>
+                </div>
             </div>
-
             <!-- Vulnerabilities -->
-            <div class="row background">
-                <div class="boxContent vulnerabilities">
+            <div>
+                <div class="boxContent vulnerabilities ">
                     <h5><ion-icon name="warning-outline"></ion-icon>Vulnerabilities</h5>
-                    <div class="vulnsPartRepeat">
-                        <div class="col s3 titleVulnerabilities">
-                            <h6>CVE-2018-20650</h6>
-                        </div>
-                        <div class="col s9 vulnerabilitiesText">
-                            A reachable Object::dictLookup assertion in Poppler 0.72.0 allows attackers to cause a denial of service due to the lack of a check for the dict data type, as demonstrated by use of the FileSpec class (in FileSpec.cc) in pdfdetach
-                            <!-- The BN_mod_sqrt() function, which computes a modular square root, contains a bug that can cause it to loop forever for non-prime moduli. Internally this function is -->
-                        </div>
-                        <div class="col s3 titleVulnerabilities">
-                            <h6>CVE-2018-20650</h6>
-                        </div>
-                        <div class="col s9 vulnerabilitiesText">
-                            A reachable Object::dictLookup assertion in Poppler 0.72.0 allows attackers to cause a denial of service due to the lack of a check for the dict data type, as demonstrated by use of the FileSpec class (in FileSpec.cc) in pdfdetach
-                            <!-- The BN_mod_sqrt() function, which computes a modular square root, contains a bug that can cause it to loop forever for non-prime moduli. Internally this function is -->
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
         <div class="col s6 rowN2">
-            
             <!-- Ports -->
-            <div class="boxContent ports">
-                <h5 class="">Open <strong>Ports</strong></h5>
-                <a class="waves-effect blue btn resultResearch portBox">80</a>
-                <a class="waves-effect blue btn resultResearch portBox">11</a>
-                <a class="waves-effect blue btn resultResearch portBox">123</a>
-                <a class="waves-effect blue btn resultResearch portBox">443</a>
-                <a class="waves-effect blue btn resultResearch portBox">4000</a>
+            <div class="">
+                <div class="boxContent ports">
+                    <h5 class="">Open <strong>Ports</strong></h5>
+                </div>
             </div>
-
             <!-- Port Description -->
-            <div class="col s12">
-                <div class="label">
-                    <span class="col s6">//&nbsp;<span><span>80</span>&nbsp;/&nbsp;TCP</span></span>
-                    <span class="col s6"><span class="number">-1263655224 </span>&nbsp;&nbsp;|&nbsp;&nbsp;2022-09-03T14:33:17.210663</span> 
-                </div>
-                <div class="boxContent">
-                    <div class="vulnerabilitiesText">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut natus laborum porro? Omnis deserunt quas saepe doloribus est? Odio possimus quae harum ducimus sit sint a eum nihil soluta est!
-                    </div>
+            <div class="">
+                <div class="dataPort " >
                 </div>
             </div>
-
-            <!-- Test width EJS Dinamic -->
-
         </div>
     </div>
-    <script src="../javascript/index.js" ></script>
+    <script src="../javascript/individualResult.js" ></script>
+    <script src="../javascript/main.js" ></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

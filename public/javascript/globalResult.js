@@ -69,6 +69,7 @@ const createElement = (data) => {
 
     const ipLink = document.createElement("a");
     ipLink.classList.add("ip_str");
+    ipLink.classList.add('searchByString')
     ipLink.href = "#";
     // ipLink.href = "individualResult";
     ipLink.textContent = data.ip;
@@ -89,11 +90,9 @@ const createElement = (data) => {
 
     const ispLi = document.createElement("li");
     ispLi.classList.add("isp");
-    ispLi.addEventListener('click', (e) => {
-        console.log(e)
-    })
 
     const ispLink = document.createElement("a");
+    ispLink.classList.add('searchByString')
     ispLink.href = "#";
     ispLink.textContent = data.isp;
 
@@ -105,11 +104,13 @@ const createElement = (data) => {
     flagSpan.textContent = "🇻🇪";
 
     const countryLink = document.createElement("a");
+    countryLink.classList.add('searchByString')
     countryLink.href = "#";
     countryLink.textContent = ` ${data.country}, `;
 
     const cityLink = document.createElement("a");
     cityLink.href = "#";
+    cityLink.classList.add('searchByString')
     cityLink.textContent = data.city;
 
     const dataObjectDiv = document.createElement("div");
@@ -142,7 +143,6 @@ const createElement = (data) => {
 }
 
 const cardMainData = obj => {
-   
     const sortFirst5 = obj.matches.slice(0,9);
     sortFirst5.forEach(element => {
         const { isp, data, ip_str, org, location: {city, country_name}, timestamp, }  = element
@@ -158,7 +158,7 @@ const cardMainData = obj => {
     });
 }
 
-const cardResumeData = obj => {
+const cardResumeData = obj => {         // Show data of the left box in the UI
     for (const key in obj) {
         const value = obj[key]
         const element = document.querySelector(`#${key}`)
@@ -166,7 +166,9 @@ const cardResumeData = obj => {
             const li = document.createElement('li')
             const a = document.createElement('a')
             const span = document.createElement('span')
-    
+            if(key == 'country_name' || key == 'port'){
+                a.classList.add('searchByString')
+            }
             li.classList.add('slotResult')
             span.classList.add('num-Data')
 
@@ -191,28 +193,22 @@ const sortFunction = obj => {       // show the top 5 of the 'obj' passed
     return top5
 }
 
-const handlerTagA = () => {
-    const links = document.querySelectorAll('a')
-    links.forEach(e => {
-        e.addEventListener('click', (event) => {
-            let form = document.querySelector('#searchForm')
-            let input = form.children[0].children[0]
-            input.value = event.target.innerText
-            form.submit()
-        })
-    })
-}
-
 document.addEventListener('DOMContentLoaded', ()=>{
     fetch('http://localhost:3001/javascript/response.txt')
         .then(response =>   response.json())
         .then(data => {
-            buildObj(data)
-            const resumeDataObj = buildResumeDataObj($showObjData)
-            const shortedData = sortFunction(resumeDataObj)
-            cardMainData(data)
-            cardResumeData(shortedData)
-            handlerTagA()
+            if(data.total == 0 ){
+                handleErrorEmptyResponse()
+            }else{
+                buildObj(data)
+                const resumeDataObj = buildResumeDataObj($showObjData)
+                const shortedData = sortFunction(resumeDataObj)
+                cardMainData(data)
+                cardResumeData(shortedData)
+        
+                const a = document.querySelectorAll('.searchByString')
+                makeSearchByString(a)
+            }
         })
 	.catch(error => console.error(error))
 });
