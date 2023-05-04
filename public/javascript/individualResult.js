@@ -1,16 +1,10 @@
-// linkear los datos que son un Link en "globalResult" y "individualResult" para que haga la busqueda con los respectivos filtros
 // desarrollar la vista de Error, y configurar un error personalizado para cada caso
 
-// const { search } = require("../../routes/routes");
-
-// const e = require("express");
-
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3001/javascript/response.txt')
+    fetchQuery('http://localhost:3001/javascript/response.txt')
         .then(response => response.json())
         .then(data => {
             buildData(data)
-            console.log('')
         })
         .catch(error => console.error(error))
 })
@@ -93,7 +87,7 @@ function vulnerabilities(data){
                 addClass(['vulnsPartRepeat'],wrapper)
                 addClass(['titleVulnerabilities'],title)
                 addClass(['vulnerabilitiesText'],textDescription)
-                addClass(['search'], a)
+                addClass(['search','resultResearch'], a)
         
                 setAttributeTag({
                     tag : a,
@@ -168,22 +162,6 @@ function portDescription(dataObject){
     });
 }
 
-const setAttributeTag = (data) => {
-    data.tag.setAttribute(data.att,data.value)
-}
-const createTag = tag => {
-    const element = document.createElement(tag)
-    return element
-}
-const addClass = (arrayNames,tag) => {
-    arrayNames.forEach(element => {
-        tag.classList.add(element)
-    });
-}
-const deleteElement = tag => {
-    const element = document.querySelector(`.${tag}`)
-    element.parentNode.removeChild(element)
-}
 function createTagTd(data,position){
     const td = createTag('td');
     const a = createTag('a')

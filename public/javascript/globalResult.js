@@ -47,9 +47,8 @@ const buildResumeDataObj = obj => {
 }
 
 const createElement = (data) => {
-    
     const flagSpan = document.createElement("span");
-    fetch(`https://restcountries.com/v3.1/alpha/${data.country_code}`)
+    fetchQuery(`https://restcountries.com/v3.1/alpha/${data.country_code}`)
         .then(res => res.json())
         .then(data => {
             flagSpan.classList.add("flag");
@@ -58,23 +57,21 @@ const createElement = (data) => {
         .catch(err => console.error(err))
 
     // Cree un div para contener todos los artículos
-    const dataDiv = document.createElement("div");
+    const dataDiv = createTag('div')
     dataDiv.classList.add("data");
 
     // Cree el primer artículo y sus elementos
     const article1 = document.createElement("article");
 
-    const ipDiv = document.createElement("div");
+    const ipDiv = createTag('div')
     ipDiv.classList.add("ip");
 
-    const ipLink = document.createElement("a");
-    ipLink.classList.add("ip_str");
-    ipLink.classList.add('searchByString')
+    const ipLink = createTag('a')
+    addClass(['ip_str','searchByString'],ipLink)
     ipLink.href = "#";
-    // ipLink.href = "individualResult";
     ipLink.textContent = data.ip;
 
-    const timeStampDiv = document.createElement("div");
+    const timeStampDiv = createTag('div')
     timeStampDiv.classList.add("timeStamp");
     timeStampDiv.textContent = data.timestamp;
 
@@ -156,7 +153,6 @@ const cardMainData = obj => {
 }
 
 const cardResumeData = (obj,total) => {         // Show data of the left box in the UI
-    console.log(total);
     const totalResult = document.querySelector('.totalResult');
     const h4 = document.createElement('h4');
     h4.textContent = total;
@@ -196,7 +192,7 @@ const sortFunction = obj => {       // show the top 5 of the 'obj' passed
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    fetch('http://localhost:3001/javascript/response.txt')
+    fetchQuery('http://localhost:3001/javascript/response.txt')
         .then(response =>   response.json())
         .then(data => {
             if(data.total == 0 ){
