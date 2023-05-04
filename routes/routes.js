@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+
 
 const app = express()
 app.use(express.json());
@@ -9,14 +11,15 @@ const query = require('../src/axios.js');
 const { response, urlencoded } = require('express');
 
 const bodyParser = require('body-parser');
+const { default: axios } = require('axios');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const path = './public/javascript/response.txt';
 
 router.post('/', (req,res) => {
     const { search, group1 } = req.body;
-    const path = './public/javascript/response.txt';
     
     query(search,group1)
         .then(response =>{
@@ -56,3 +59,26 @@ router.get('/errorView', (req,res) => {
 })
 
 module.exports = router;
+
+
+
+
+
+
+
+
+// const repetitions = {};
+
+// for (const key in sendDataFrontend.totalData) {
+//   if (Array.isArray(sendDataFrontend.totalData[key])) {
+// 	sendDataFrontend.totalData[key].forEach((value) => {
+// 	  if (typeof value === "string") {
+// 		sendDataFrontend.production[value] = sendDataFrontend.production[value] ? sendDataFrontend.production[value] + 1 : 1;
+// 	  }
+// 	});
+//   } else {
+// 	console.error(`Value for key "${key}" is not an array`);
+//   }
+// }
+
+// console.log(sendDataFrontend.production)

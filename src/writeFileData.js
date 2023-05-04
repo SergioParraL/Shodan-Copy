@@ -16,7 +16,8 @@ const writeFileData = (path, data) =>{
     })
 }
 
+
 module.exports = {
     deleteFileData : deleteFileData,
-    writeFileData : writeFileData
+    writeFileData : writeFileData,
 }
