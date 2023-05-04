@@ -8,12 +8,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:3001/javascript/response.txt')
         .then(response => response.json())
-        .then(data => buildData(data))
+        .then(data => {
+            buildData(data)
+            console.log('')
+        })
         .catch(error => console.error(error))
 })
 
 const buildData = (json) => {
-    console.log(json);
     const { 
         latitude,
         longitude,
@@ -77,41 +79,42 @@ const generalInformation = (path) => {
 
 function vulnerabilities(data){
     data.forEach(element => {
-        const title = createTag('div')
-        const a = createTag('a')
-        const h6 = createTag('h6')
-        const textDescription = createTag('div')
-        const wrapper = createTag('div')
-        const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam officiis repellat et fugiat inventore. Recusandae similique doloremque aspernatur facere nemo mollitia aut explicabo accusantium iure tempore debitis corporis doloribus, velit asperiores excepturi, a omnis. Praesentium.'
-        const parent = document.querySelector('.vulnerabilities')
+        fetchQuery(`https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${data[0]}`)
+            .then(res => res.json())
+            .then(obj => {
+                const title = createTag('div')
+                const a = createTag('a')
+                const h6 = createTag('h6')
+                const textDescription = createTag('div')
+                const wrapper = createTag('div')
+                const text = obj.vulnerabilities[0].cve.descriptions[0].value
+                const parent = document.querySelector('.vulnerabilities')
+                
+                addClass(['vulnsPartRepeat'],wrapper)
+                addClass(['titleVulnerabilities'],title)
+                addClass(['vulnerabilitiesText'],textDescription)
+                addClass(['search'], a)
         
-        addClass(['vulnsPartRepeat'],wrapper)
-        addClass(['titleVulnerabilities'],title)
-        addClass(['vulnerabilitiesText'],textDescription)
-        addClass(['search'], a)
-
-        setAttributeTag({
-            tag : a,
-            att : 'href',
-            value : 'google.com'
-        })
-        // setAttributeTag({
-        //     tag : a,
-        //     att : 'target',
-        //     value : '_blank'
-        // })
-
-        h6.textContent = element
-        textDescription.textContent = text
+                setAttributeTag({
+                    tag : a,
+                    att : 'href',
+                    value : 'google.com'
+                })
         
-        a.appendChild(h6)
-        title.appendChild(a)
-        textDescription.textContent = text
-
-        wrapper.appendChild(title)
-        wrapper.appendChild(textDescription)
+                h6.textContent = element
+                textDescription.textContent = text
+                
+                a.appendChild(h6)
+                title.appendChild(a)
+                textDescription.textContent = text
         
-        parent.appendChild(wrapper)
+                wrapper.appendChild(title)
+                wrapper.appendChild(textDescription)
+                
+                parent.appendChild(wrapper)
+            })
+            .catch(err => console.error(err))
+       
     });
 }
 

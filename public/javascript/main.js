@@ -26,3 +26,8 @@ const handleErrorEmptyResponse = () => {
         console.error(error);
     });
 }
+
+const fetchQuery = link => {
+    const data = fetch(link)
+    return data
+}
