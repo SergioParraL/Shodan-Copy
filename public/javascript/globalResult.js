@@ -1,14 +1,4 @@
-// const m = {name : 'sergio', last : 'Parra'}
-// console.log(JSON.stringify(m))
-// fetch('/', {
-//     method : 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(m)
-// })
-// .then(response => console.log(response))
-// .catch(err => console.error(err))
+
 let $showObjData = {
     port : [],
     org	: [],
@@ -57,6 +47,16 @@ const buildResumeDataObj = obj => {
 }
 
 const createElement = (data) => {
+    
+    const flagSpan = document.createElement("span");
+    fetch(`https://restcountries.com/v3.1/alpha/${data.country_code}`)
+        .then(res => res.json())
+        .then(data => {
+            flagSpan.classList.add("flag");
+            flagSpan.textContent = data[0].flag;
+        })
+        .catch(err => console.error(err))
+
     // Cree un div para contener todos los artículos
     const dataDiv = document.createElement("div");
     dataDiv.classList.add("data");
@@ -98,10 +98,6 @@ const createElement = (data) => {
 
     const addressLi = document.createElement("li");
     addressLi.classList.add("address");
-
-    const flagSpan = document.createElement("span");
-    flagSpan.classList.add("flag");
-    flagSpan.textContent = "🇻🇪";
 
     const countryLink = document.createElement("a");
     countryLink.classList.add('searchByString')
@@ -145,7 +141,7 @@ const createElement = (data) => {
 const cardMainData = obj => {
     const sortFirst5 = obj.matches.slice(0,9);
     sortFirst5.forEach(element => {
-        const { isp, data, ip_str, org, location: {city, country_name}, timestamp, }  = element
+        const { isp, data, ip_str, org, location: {city, country_name, country_code}, timestamp, }  = element
         createElement ({
             isp : isp,
             ip : ip_str,
@@ -153,6 +149,7 @@ const cardMainData = obj => {
             org : org,
             city : city,
             country : country_name,
+            country_code : country_code,
             timestamp : timestamp
         })
     });
@@ -211,5 +208,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
         })
 	.catch(error => console.error(error))
+
+
+    
 });
 
