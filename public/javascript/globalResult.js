@@ -155,7 +155,12 @@ const cardMainData = obj => {
     });
 }
 
-const cardResumeData = obj => {         // Show data of the left box in the UI
+const cardResumeData = (obj,total) => {         // Show data of the left box in the UI
+    console.log(total);
+    const totalResult = document.querySelector('.totalResult');
+    const h4 = document.createElement('h4');
+    h4.textContent = total;
+    totalResult.appendChild(h4)
     for (const key in obj) {
         const value = obj[key]
         const element = document.querySelector(`#${key}`)
@@ -201,7 +206,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 const resumeDataObj = buildResumeDataObj($showObjData)
                 const shortedData = sortFunction(resumeDataObj)
                 cardMainData(data)
-                cardResumeData(shortedData)
+                cardResumeData(shortedData,data.total)
         
                 const a = document.querySelectorAll('.searchByString')
                 makeSearchByString(a)
