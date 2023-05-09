@@ -1,4 +1,3 @@
-// desarrollar la vista de Error, y configurar un error personalizado para cada caso
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchQuery('http://localhost:3001/javascript/response.txt')
@@ -38,8 +37,8 @@ const buildData = (json) => {
     })
 
     vulns == undefined ? deleteElement('vulnerabilities') : vulnerabilities(vulns)
-    ports == undefined ? deleteElement('ports') : port(ports)
     data == undefined ? deleteElement('dataPort') : portDescription(data)
+    ports == undefined ? deleteElement('ports') : port(ports)
     
     const a = document.querySelectorAll('.searchByString')
     makeSearchByString(a)
@@ -113,14 +112,18 @@ function vulnerabilities(data){
 }
 
 function port (data) {
+    data.sort((a,b) => {
+        return a - b
+    })
     data.forEach(element => {
+        const id = `http://localhost:3001/individualResult#${element}`
         const a = createTag('a')
         const parent = document.querySelector('.ports')
         addClass(['resultResearch','portBox','btn','blue','waves-effect'],a)
         setAttributeTag({
             tag : a,
             att : 'href',
-            value : '#'
+            value : id
         })
         a.textContent = element
         parent.appendChild(a)
@@ -130,10 +133,11 @@ function port (data) {
 }
 
 function portDescription(dataObject){
-    dataObject.forEach(element => {
+        dataObject.forEach(element => {
         const { data,hash, timestamp, transport, port } = element
         if(data != ''){
             const dataText = createTag('div')
+            dataText.setAttribute('id',port)
             dataText.innerHTML = `
                     <div>
                         <span class="col s6">
