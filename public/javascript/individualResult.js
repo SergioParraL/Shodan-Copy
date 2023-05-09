@@ -1,19 +1,14 @@
-// linkear los datos que son un Link en "globalResult" y "individualResult" para que haga la busqueda con los respectivos filtros
-// desarrollar la vista de Error, y configurar un error personalizado para cada caso
-
-// const { search } = require("../../routes/routes");
-
-// const e = require("express");
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3001/javascript/response.txt')
+    fetchQuery('http://localhost:3001/javascript/response.txt')
         .then(response => response.json())
-        .then(data => buildData(data))
+        .then(data => {
+            buildData(data)
+        })
         .catch(error => console.error(error))
 })
 
 const buildData = (json) => {
-    console.log(json);
     const { 
         latitude,
         longitude,
@@ -42,8 +37,8 @@ const buildData = (json) => {
     })
 
     vulns == undefined ? deleteElement('vulnerabilities') : vulnerabilities(vulns)
-    ports == undefined ? deleteElement('ports') : port(ports)
     data == undefined ? deleteElement('dataPort') : portDescription(data)
+    ports == undefined ? deleteElement('ports') : port(ports)
     
     const a = document.querySelectorAll('.searchByString')
     makeSearchByString(a)
@@ -77,53 +72,58 @@ const generalInformation = (path) => {
 
 function vulnerabilities(data){
     data.forEach(element => {
-        const title = createTag('div')
-        const a = createTag('a')
-        const h6 = createTag('h6')
-        const textDescription = createTag('div')
-        const wrapper = createTag('div')
-        const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam officiis repellat et fugiat inventore. Recusandae similique doloremque aspernatur facere nemo mollitia aut explicabo accusantium iure tempore debitis corporis doloribus, velit asperiores excepturi, a omnis. Praesentium.'
-        const parent = document.querySelector('.vulnerabilities')
+        fetchQuery(`https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=${data[0]}`)
+            .then(res => res.json())
+            .then(obj => {
+                const title = createTag('div')
+                const a = createTag('a')
+                const h6 = createTag('h6')
+                const textDescription = createTag('div')
+                const wrapper = createTag('div')
+                const text = obj.vulnerabilities[0].cve.descriptions[0].value
+                const parent = document.querySelector('.vulnerabilities')
+                
+                addClass(['vulnsPartRepeat'],wrapper)
+                addClass(['titleVulnerabilities'],title)
+                addClass(['vulnerabilitiesText'],textDescription)
+                addClass(['search','resultResearch'], a)
         
-        addClass(['vulnsPartRepeat'],wrapper)
-        addClass(['titleVulnerabilities'],title)
-        addClass(['vulnerabilitiesText'],textDescription)
-        addClass(['search'], a)
-
-        setAttributeTag({
-            tag : a,
-            att : 'href',
-            value : 'google.com'
-        })
-        // setAttributeTag({
-        //     tag : a,
-        //     att : 'target',
-        //     value : '_blank'
-        // })
-
-        h6.textContent = element
-        textDescription.textContent = text
+                setAttributeTag({
+                    tag : a,
+                    att : 'href',
+                    value : 'google.com'
+                })
         
-        a.appendChild(h6)
-        title.appendChild(a)
-        textDescription.textContent = text
-
-        wrapper.appendChild(title)
-        wrapper.appendChild(textDescription)
+                h6.textContent = element
+                textDescription.textContent = text
+                
+                a.appendChild(h6)
+                title.appendChild(a)
+                textDescription.textContent = text
         
-        parent.appendChild(wrapper)
+                wrapper.appendChild(title)
+                wrapper.appendChild(textDescription)
+                
+                parent.appendChild(wrapper)
+            })
+            .catch(err => console.error(err))
+       
     });
 }
 
 function port (data) {
+    data.sort((a,b) => {
+        return a - b
+    })
     data.forEach(element => {
+        const id = `http://localhost:3001/individualResult#${element}`
         const a = createTag('a')
         const parent = document.querySelector('.ports')
         addClass(['resultResearch','portBox','btn','blue','waves-effect'],a)
         setAttributeTag({
             tag : a,
             att : 'href',
-            value : '#'
+            value : id
         })
         a.textContent = element
         parent.appendChild(a)
@@ -133,10 +133,11 @@ function port (data) {
 }
 
 function portDescription(dataObject){
-    dataObject.forEach(element => {
+        dataObject.forEach(element => {
         const { data,hash, timestamp, transport, port } = element
         if(data != ''){
             const dataText = createTag('div')
+            dataText.setAttribute('id',port)
             dataText.innerHTML = `
                     <div>
                         <span class="col s6">
@@ -165,22 +166,6 @@ function portDescription(dataObject){
     });
 }
 
-const setAttributeTag = (data) => {
-    data.tag.setAttribute(data.att,data.value)
-}
-const createTag = tag => {
-    const element = document.createElement(tag)
-    return element
-}
-const addClass = (arrayNames,tag) => {
-    arrayNames.forEach(element => {
-        tag.classList.add(element)
-    });
-}
-const deleteElement = tag => {
-    const element = document.querySelector(`.${tag}`)
-    element.parentNode.removeChild(element)
-}
 function createTagTd(data,position){
     const td = createTag('td');
     const a = createTag('a')

@@ -14,15 +14,24 @@ const makeSearchByString = (tag) => {
     });
 }
 
-const handleErrorEmptyResponse = () => {
-    fetch('http://localhost:3001/errorView', {
-        method: 'GET',
-    })
-    
-    .then(data => {
-        console.log(data);
-        })
-        .catch(error => {
-        console.error(error);
+const fetchQuery = link => {
+    const data = fetch(link)
+    return data
+}
+
+const setAttributeTag = (data) => {
+    data.tag.setAttribute(data.att,data.value)
+}
+const createTag = tag => {
+    const element = document.createElement(tag)
+    return element
+}
+const addClass = (arrayNames,tag) => {
+    arrayNames.forEach(element => {
+        tag.classList.add(element)
     });
+}
+const deleteElement = tag => {
+    const element = document.querySelector(`.${tag}`)
+    element.parentNode.removeChild(element)
 }
