@@ -59,26 +59,3 @@ router.get('/errorView', (req,res) => {
 })
 
 module.exports = router;
-
-
-
-
-
-
-
-
-// const repetitions = {};
-
-// for (const key in sendDataFrontend.totalData) {
-//   if (Array.isArray(sendDataFrontend.totalData[key])) {
-// 	sendDataFrontend.totalData[key].forEach((value) => {
-// 	  if (typeof value === "string") {
-// 		sendDataFrontend.production[value] = sendDataFrontend.production[value] ? sendDataFrontend.production[value] + 1 : 1;
-// 	  }
-// 	});
-//   } else {
-// 	console.error(`Value for key "${key}" is not an array`);
-//   }
-// }
-
-// console.log(sendDataFrontend.production)

@@ -5,9 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/error.css">
 </head>
 <body>
     <%- include('./navBar') %>
-    <h1>This is a page for errors</h1> 
+    <main>
+        <article class="row-1">
+            <section>
+                <h2>[Error code: 401]</h2>
+                <p>Insufficient query credits, please upgrade your API plan or wait for the monthly limit to reset</p> 
+                <div class="titleBlack">172.991.230.00</div>
+            </section>
+            <img class="star" src="assets/Images/star.png" alt="">
+        </article>
+        <article class="row-2">
+            <img class="eye" src="assets/Images/eye.png" alt="">
+            <img class="" src="assets/Images/square.png" alt="">
+            <img class="eye-small" src="assets/Images/eye.png" alt="">
+        </article>
+        <article class="row-3">
+            <img class="star" src="assets/Images/star.png" alt="">
+            <section>
+                <h4><span class='titleBlack'>Search Engine for the internet of everything</span></h4>
+                <p>
+                    <span>Shodan Copy</span> is the place where you can find devices connected to the internet
+                </p>
+            </section>
+            <img class="piramyde" src="assets/Images/piramyde.png" alt="">
+        </article>
+    </main>
 </body>
 </html>
