@@ -1,0 +1,72 @@
+/* structure */
+body{
+    background-color: #FDF763;
+}
+main{
+    display: grid;
+    grid-template-columns: 37% 24% 37%;
+    gap: 1rem;
+    width: 85%;
+    margin: auto;
+}
+
+article{
+    height: 90vh;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+.row-1, .row-3{
+    justify-content: space-evenly;
+}
+
+.row-2{
+    justify-content: space-around;
+}
+
+
+/* images */
+.eye{
+    width: 95%;
+}
+.eye-small{
+    transform: scaleX(-1);
+    width: 35%;
+}
+
+.piramyde{
+    width: 40%;
+    /* float: left; */
+    margin-left: 45%;
+}
+
+.star{
+    width: 20%;   
+    margin-left: 45%; 
+}
+/* _______________________________________ */
+
+.row-1 p{
+    font-size: 2rem;
+}
+.row-3 p span{
+    color: red;
+}
+.titleBlack{
+    background-color: black;
+    color: white;
+    line-height: 150%;
+}
+
+.row-3 p{
+    font-size: 1.5rem
+}
+
+.row-1 .titleBlack{
+    text-align: center;
+    font-size: 2rem;
+    padding: .5em 0;
+    border-radius: .5rem;
+}
