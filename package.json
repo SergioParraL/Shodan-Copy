@@ -4,7 +4,7 @@
   "description": "This is a copy of the Shodan Web Site whit similars functionalities and performance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "Shodan",
