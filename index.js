@@ -6,7 +6,7 @@ const routes = require('./routes/routes')
 const fs = require('fs');
 const app = express();
 
-const $port = (process.env.PORT || 3001);
+const $port = process.env.PORT || 3001;
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended : true}))
