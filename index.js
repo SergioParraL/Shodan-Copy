@@ -2,7 +2,7 @@ const express = require('express');
 const url = require('url');
 const ejs = require('ejs');
 const { response } = require('express');
-const routes = require('./routes/routes')
+const routes = require('./routesFiles/routes')
 const fs = require('fs');
 const app = express();
 
